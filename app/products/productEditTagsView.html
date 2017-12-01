@@ -1,0 +1,42 @@
+<form name="productTagsForm" class="form-horizontal" novalidate>
+	<fieldset>
+		<legend>Product Search Tags</legend>
+		<div class="form-group">
+			<label class="col-md-2 control-label" for="inputSearchTags">Search Tags</label>
+			<div class="col-md-8">
+				<input class="form-control" type="text" ng-model="vm.newTags" placeholder="Product search keywords seperated by commas" id="inputSearchTags"  />
+			</div>
+			<div class="col-md-1">
+				<button class="btn btn-default form-control" title="Add the specified tags" ng-click="vm.addTags(vm.newTags)">
+					Add
+				</button>	
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="row col-md-8 col-md-offset-2">
+				<span ng-repeat="tag in vm.product.tags | orderBy ">
+					<button class="btn btn-default" style="font-size: smaller margin-bottom: 12px" ng-click="vm.removeTag($index)">
+					{{tag}}
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>
+				</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-4 col-md-offset-2">
+				<span>
+					<button class="btn btn-primary" ng-click="vm.submit(productTagsForm.$valid)" style="width: 70px margin-right :5px">
+						Save
+					</button>
+				</span>
+			</div>
+			<div class="col-md-offset-4">
+				<span>
+					<button class="btn btn-default" ng-click="vm.cancel()" style="width: 70px" >
+						Cancel
+					</button>
+				</span>
+			</div>
+		</div>
+	</fieldset>
+</form>

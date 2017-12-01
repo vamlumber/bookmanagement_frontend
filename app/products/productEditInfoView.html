@@ -1,0 +1,108 @@
+<form name="productForm" class="form-horizontal" novalidate>
+	<fieldset>
+		<legend>
+			Basic Product Infomation
+		</legend>
+		
+		<div class="form-group" 
+			 ng-class="{'has-error' : productForm.inputProductName.$invalid && productForm.inputProductName.$dirty}">
+			
+			<label for="inputProductName" 
+				   class="col-md-2 control-label">Product Name :</label>
+			
+			<div class="col-md-4">
+				<input type="text" 
+					   class="form-control" 
+					   id="inputProductName" 
+					   name="inputProductName" 
+					   ng-model ="vm.product.productName" 
+					   placeholder = "Product Name (Required)" 
+					   ng-minlength="2" 
+					   ng-maxlength="25" 
+					   required />
+			</div>
+			<span class="help-block has-error">
+				<span ng-show="productForm.inputProductName.$error.required">
+					Product Name Required
+				</span>
+				<span ng-show="productForm.inputProductName.$error.minlength">
+					Product Name Should Exceed 2 Charcters
+				</span>
+				<span ng-show="productForm.inputProductName.$error.maxlength">
+					Product Name Should Not Exceed 25 Characters
+				</span>
+			</span>
+		</div>
+		
+		<div class="form-group" 
+			 ng-class="{'has-error' : productForm.inputProductCode.$invalid && productForm.inputProductCode.$dirty}">
+			
+			<label class="col-md-2 control-label" 
+				   for="inputProductCode">Product Code</label>
+			
+			<div class="col-md-4">
+				<input class="form-control" 
+					   id="inputProductCode" 
+					   name="inputProductCode" 
+					   ng-model="vm.product.productCode"  
+					   ui-mask="AAA-**** (required)" 
+					   required />	
+			</div>
+			<span class="help-block has-error" 
+				  ng-show="productForm.inputProductCode.$invalid">
+				Product Code Required
+			</span>
+		</div>
+			
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="inputAvailabilityDate">Availablity</label>
+				
+				<div class="col-md-4">
+					<div class="input-group">
+						
+						<input type="text" 
+							   class="form-control" 
+							   id="inputAvailabilityDate" 
+							   datepicker-popup = "MMMM ,dd , yyyy" 
+							   ng-model="vm.product.releaseDate " 
+							   is-open="vm.opened" />
+						<span class="input-group-btn">
+							<button class="btn btn-default" ng-click="vm.open($event)">
+							<i class="glyphicon glyphicon-calendar"></i>	
+							</button>
+						</span>
+					</div>
+				</div>
+			</div>
+		<div class="form-group">
+			<label for="inputDescription" 
+				   class="col-md-2 control-label ">Description :</label>
+			
+			<div class="col-md-10">
+				<textarea class="form-control" 
+						  id="inputDescription" 
+						  placeholder="Description" 
+						  ng-model ="vm.product.description" 
+						  rows="3" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-4 col-md-offset-2">
+				<span>
+					<button class="btn btn-primary" 
+							style="width: 70px margin-right: 5px" 
+							ng-click="vm.submit(productForm.$valid)" >
+						Save
+					</button>
+				</span>
+				<span>
+					<button class="btn btn-default" 
+							style="width: 70px" 
+							ng-click="vm.cancel()">
+						Cancel
+					</button>
+				</span>
+			</div>
+		</div>
+	</fieldset>	
+</form>
